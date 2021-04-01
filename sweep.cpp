@@ -10,9 +10,16 @@ int sweep(int I, int J, double *dx, double *dy,
 		int *materialMatrix, double *sourceMatrix, std::string dot_out) {
 
 	double leftBC, rightBC;
-	double topBC[I], bottomBC[I];
+	double *topBC, *bottomBC;
 	double solution[3];
-	double phi[I*J] = {0};
+	double *phi;
+
+	topBC = new double [I];
+	bottomBC = new double [I];
+	phi = new double [I*J];
+	for(int p = 0; p < I*J; p++) {
+		phi[p] = 0;
+	}
 
 	for(int k = 0; k < K; k++) {
 		// set bottom BC
