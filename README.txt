@@ -4,7 +4,7 @@ Author: ATM Jahid Hasan
 
 # Compiling
 cd /path/to/source_code
-g++ *.cpp -o sweeper
+g++ -std=c++0x *.cpp -o sweeper
 
 # Executing
 ./sweeper example.in
