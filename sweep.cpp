@@ -10,9 +10,8 @@ int sweep(int I, int J, double *dx, double *dy,
 		int *materialMatrix, double *sourceMatrix, std::string dot_out) {
 
 	double leftBC, rightBC;
-	double *topBC, *bottomBC;
+	double *topBC, *bottomBC, *phi;
 	double solution[3];
-	double *phi;
 
 	topBC = new double [I];
 	bottomBC = new double [I];
@@ -93,6 +92,11 @@ int sweep(int I, int J, double *dx, double *dy,
 	}
 
 	outputFile.close();
+
+	// delete allocated space
+	delete[] topBC;
+	delete[] bottomBC;
+	delete[] phi;
 
 	return 0;
 }
