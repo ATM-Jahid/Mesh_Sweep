@@ -5,7 +5,8 @@
 void input_data(int &I, int &J, double *&dx, double *&dy,
 		int &K, double *&mu, double *&eta, double *&w,
 		int &M, double *&SigmaT, double *&SigmaS, double *&BC,
-		int *&materialMatrix, double *&sourceMatrix, std::string dot_in) {
+		int *&materialMatrix, double *&sourceMatrix,
+		double &conCrit, int &maxIter, std::string dot_in) {
 
 	// Read from file.
 	std::ifstream inputFile(dot_in);
@@ -67,6 +68,9 @@ void input_data(int &I, int &J, double *&dx, double *&dy,
 			inputFile >> sourceMatrix[i*J + j];
 		}
 	}
+
+	// Convergence criterion & max inner iterations.
+	inputFile >> conCrit >> maxIter;
 
 	inputFile.close();
 }

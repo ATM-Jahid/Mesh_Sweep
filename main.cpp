@@ -30,12 +30,15 @@ int main(int argc, char **argv) {
 	double *BC;
 	int *materialMatrix;
 	double *sourceMatrix;
+	double conCrit;
+	int maxIter;
 
 	// Read input data.
 	input_data(I, J, dx, dy,
 			K, mu, eta, w,
 			M, SigmaT, SigmaS, BC,
-			materialMatrix, sourceMatrix, dot_in);
+			materialMatrix, sourceMatrix,
+			conCrit, maxIter, dot_in);
 
 	// Check input.
 	int check = input_check(I, J, dx, dy,
@@ -59,7 +62,8 @@ int main(int argc, char **argv) {
 	transport_solver(I, J, dx, dy,
 			K, mu, eta, w,
 			M, SigmaT, SigmaS, BC,
-			materialMatrix, sourceMatrix, dot_out);
+			materialMatrix, sourceMatrix,
+			conCrit, maxIter, dot_out);
 
 	// Free allocated space.
 	delete[] dx;
