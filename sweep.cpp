@@ -7,18 +7,11 @@
 int sweep(int I, int J, double *dx, double *dy,
 		int K, double *mu, double *eta, double *w,
 		int M, double *SigmaT, double *SigmaS, double *BC,
-		int *materialMatrix, double *sourceMatrix, std::string dot_out) {
+		int *materialMatrix, double *sourceMatrix,
+		double *topBC, double *bottomBC, double *phi) {
 
 	double leftBC, rightBC;
-	double *topBC, *bottomBC, *phi;
 	double solution[3];
-
-	topBC = new double [I];
-	bottomBC = new double [I];
-	phi = new double [I*J];
-	for(int p = 0; p < I*J; p++) {
-		phi[p] = 0;
-	}
 
 	for(int k = 0; k < K; k++) {
 		// set bottom BC
@@ -77,26 +70,6 @@ int sweep(int I, int J, double *dx, double *dy,
 			}
 		}
 	}
-
-	std::ofstream outputFile;
-	outputFile.open(dot_out, std::ofstream::app);
-
-	outputFile << "Discrete Ordinates Method Solution\n";
-	outputFile << "i\tj\tCell-Averaged Scalar Flux\n" << std::scientific;
-
-	for(int j = 0; j < J; j++) {
-		for(int i = 0; i < I; i++) {
-			outputFile << i+1 << "\t" << j+1 << "\t" << phi[i*I + j] << "\n";
-		}
-		outputFile << "\n";
-	}
-
-	outputFile.close();
-
-	// delete allocated space
-	delete[] topBC;
-	delete[] bottomBC;
-	delete[] phi;
 
 	return 0;
 }
