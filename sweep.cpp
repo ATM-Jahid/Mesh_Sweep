@@ -82,7 +82,7 @@ int sweep(int I, int J, double *dx, double *dy,
 	outputFile.open(dot_out, std::ofstream::app);
 
 	outputFile << "Discrete Ordinates Method Solution\n";
-	outputFile << "i\tj\tCell-Averaged Scalar Flux\n";
+	outputFile << "i\tj\tCell-Averaged Scalar Flux\n" << std::scientific;
 
 	for(int j = 0; j < J; j++) {
 		for(int i = 0; i < I; i++) {
