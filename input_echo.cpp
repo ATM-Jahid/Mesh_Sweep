@@ -22,8 +22,8 @@ void input_echo(int I, int J, double *dx, double *dy,
 	outputFile << "\n\n";
 
 	outputFile << "Computational Cell Data\n";
+	outputFile << "i\tj\tMaterial\tdx\tdy\tSigmaT\tSigmaS\tSource\n";
 	for(int i = 0; i < I; i++) {
-		outputFile << "i\tj\tMaterial\tdx\tdy\tSigmaT\tSigmaS\tSource\n";
 		for(int j = 0; j < J; j++) {
 			outputFile << i+1 << "\t" << j+1 << "\t";
 			outputFile << materialMatrix[i*J + j] << "\t";

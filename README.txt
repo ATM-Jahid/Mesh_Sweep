@@ -1,18 +1,17 @@
-2-D Mesh Sweeper
+Inner Iteration with Mesh Sweep
 Version: 0.1
 Author: ATM Jahid Hasan
 
 # Compiling
 cd /path/to/source_code
-g++ -std=c++0x *.cpp -o sweeper
+g++ -std=c++0x *.cpp -o insweep
 
 # Executing
-./sweeper example.in
-./sweeper rotated.in
+./insweep example.in
 
 # Status
 Operational
 
 # Input, Output, Limitations, Restrictions
-"example.in" and "rotated.in" are the sample input files.
-"example.out" and "rotated.out" are the sample output files.
+"example.in" is the sample input file.
+"example.out" is the sample output file.
