@@ -1,7 +1,7 @@
-2-D Mesh Sweeper
+Inner Iteration with Mesh Sweep
 Version: 0.1
 Author: ATM Jahid Hasan
-Thu Apr  8 00:10:15 2021
+Sun Apr 11 22:17:59 2021
 
 Discrete Ordinates/Octant
 n	mu	eta	w
@@ -241,4 +241,4 @@ i	j	Cell-Averaged Scalar Flux
 9	10	2.014239e-02
 10	10	3.118783e-02
 
-Execution time: 674 microseconds
+Execution time: 699 microseconds

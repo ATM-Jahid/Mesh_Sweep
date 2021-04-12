@@ -6,7 +6,7 @@
 void version_data(std::string dot_out) {
 	std::ofstream outputFile;
 	outputFile.open(dot_out);
-	outputFile << "2-D Mesh Sweeper\n";
+	outputFile << "Inner Iteration with Mesh Sweep\n";
 	outputFile << "Version: 0.1\n";
 	outputFile << "Author: ATM Jahid Hasan\n";
 	auto now = std::chrono::system_clock::now();
