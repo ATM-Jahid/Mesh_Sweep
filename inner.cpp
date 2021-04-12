@@ -12,9 +12,23 @@ int inner(int I, int J, double *dx, double *dy,
 		double conCrit, int maxIter, std::string dot_out) {
 
 	// Entering data <-
+	// I, J: number of x,y computational cells
+	// dx, dy: cell length along x- and y-axis
+	// mu, eta, w: angular quadrature
+	// M: number of materials
+	// SigmaT: total cross section
+	// SigmaS: scattering cross section
+	// materialMatrix: distribution of material
+	// sourceMatrix: distribution of fixed source
+	// conCrit: convergence criterion
+	// maxIter: max number of inner iterations
+	// dot_out: output file
 	//
 	// Returned data ->
-	//
+	// Termination status
+	// Iterations needed
+	// Convergence criterion achieved
+	// Cell-averaged scalar flux
 
 	std::ofstream outputFile;
 	outputFile.open(dot_out, std::ofstream::app);
@@ -35,7 +49,7 @@ int inner(int I, int J, double *dx, double *dy,
 
 	// Inner iteration loop
 	for(int k = 0; k < maxIter; k++) {
-		// compute source term here
+		// computing source term
 		for(int u = 0; u < I*J; u++) {
 			distrSource[u] = sourceMatrix[u] + phi_old[u] * SigmaS[materialMatrix[u]-1];
 		}
@@ -47,7 +61,7 @@ int inner(int I, int J, double *dx, double *dy,
 				materialMatrix, distrSource,
 				topBC, bottomBC, phi);
 
-		// find the maximum error
+		// finding the maximum error
 		maxErr = 0;
 		for(int v = 0; v < I*J; v++) {
 			if(std::abs(phi[v]/phi_old[v]-1) > maxErr) {
@@ -55,7 +69,7 @@ int inner(int I, int J, double *dx, double *dy,
 			}
 		}
 
-		// check convergence
+		// checking convergence
 		if(maxErr <= conCrit) {
 			outputFile << "Terminated successfully.\n";
 			outputFile << "Iterations needed: " << k << "\n";
@@ -63,7 +77,7 @@ int inner(int I, int J, double *dx, double *dy,
 			break;
 		}
 
-		// update phi_old here
+		// updating phi_old
 		for(int p = 0; p < I*J; p++) {
 			phi_old[p] = phi[p];
 		}
