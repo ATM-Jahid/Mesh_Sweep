@@ -72,7 +72,7 @@ int inner(int I, int J, double *dx, double *dy,
 		// checking convergence
 		if(maxErr <= conCrit) {
 			outputFile << "Terminated successfully.\n";
-			outputFile << "Iterations needed: " << k << "\n";
+			outputFile << "Iterations needed: " << k+1 << "\n";
 			outputFile << "Convergence criterion achieved: " << maxErr << "\n\n";
 			break;
 		}
