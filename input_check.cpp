@@ -17,15 +17,15 @@ int input_check(int I, int J, double *dx, double *dy,
 			return -2;
 		}
 	}
-	for(int i = 0; i < J; i++) {
-		if(dy[i] <= 0) {
+	for(int j = 0; j < J; j++) {
+		if(dy[j] <= 0) {
 			std::cout << "Error in y-dimension cell size.\n";
 			return -2;
 		}
 	}
 
-	for(int i = 0; i < K; i++) {
-		if((mu[i] < -1) || (eta[i] < -1) || (mu[i] > 1) || (eta[i] > 1) || (w[i] < 0)) {
+	for(int k = 0; k < K; k++) {
+		if((mu[k] < -1) || (eta[k] < -1) || (mu[k] > 1) || (eta[k] > 1) || (w[k] < 0)) {
 			std::cout << "Error in angular quadrature.\n";
 			return -3;
 		}
@@ -48,18 +48,18 @@ int input_check(int I, int J, double *dx, double *dy,
 	}
 
 	// material indices between 1 & the number of materials
-	for(int i = 0; i < I; i++) {
-		for(int j = 0; j < J; j++) {
-			if(materialMatrix[i*J + j] < 1 || materialMatrix[i*J + j] > M) {
+	for(int j = 0; j < J; j++) {
+		for(int i = 0; i < I; i++) {
+			if(materialMatrix[j*I + i] < 1 || materialMatrix[j*I + i] > M) {
 				std::cout << "Error in material matrix.\n";
 				return -6;
 			}
 		}
 	}
 
-	for(int i = 0; i < I; i++) {
-		for(int j = 0; j < J; j++) {
-			if(sourceMatrix[i*J + j] < 0) {
+	for(int j = 0; j < J; j++) {
+		for(int i = 0; i < I; i++) {
+			if(sourceMatrix[j*I + i] < 0) {
 				std::cout << "Error in source matrix.\n";
 				return -7;
 			}

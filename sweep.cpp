@@ -27,8 +27,8 @@ int sweep(int I, int J, double *dx, double *dy,
 			// set left BC
 			leftBC = BC[0];
 			for(int i = 0; i < I; i++) {
-				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[i*I + j] - 1], leftBC, bottomBC[i], distrSource[i*I + j]);
-				phi[i*I + j] += w[k] * solution[0];
+				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[j*I + i] - 1], leftBC, bottomBC[i], distrSource[j*I + i]);
+				phi[j*I + i] += w[k] * solution[0];
 				leftBC = solution[1];
 				bottomBC[i] = solution[2];
 			}
@@ -43,8 +43,8 @@ int sweep(int I, int J, double *dx, double *dy,
 			// set right BC
 			rightBC = BC[1];
 			for(int i = I-1; i > -1; i--) {
-				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[i*I + j] - 1], rightBC, bottomBC[i], distrSource[i*I + j]);
-				phi[i*I + j] += w[k] * solution[0];
+				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[j*I + i] - 1], rightBC, bottomBC[i], distrSource[j*I + i]);
+				phi[j*I + i] += w[k] * solution[0];
 				rightBC = solution[1];
 				bottomBC[i] = solution[2];
 			}
@@ -59,8 +59,8 @@ int sweep(int I, int J, double *dx, double *dy,
 			// set right BC
 			rightBC = BC[1];
 			for(int i = I-1; i > -1; i--) {
-				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[i*I + j] - 1], rightBC, topBC[i], distrSource[i*I + j]);
-				phi[i*I + j] += w[k] * solution[0];
+				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[j*I + i] - 1], rightBC, topBC[i], distrSource[j*I + i]);
+				phi[j*I + i] += w[k] * solution[0];
 				rightBC = solution[1];
 				topBC[i] = solution[2];
 			}
@@ -75,8 +75,8 @@ int sweep(int I, int J, double *dx, double *dy,
 			// set left BC
 			leftBC = BC[1];
 			for(int i = 0; i < I; i++) {
-				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[i*I + j] - 1], leftBC, topBC[i], distrSource[i*I + j]);
-				phi[i*I + j] += w[k] * solution[0];
+				ddsolve(solution, dx[i], dy[j], mu[k], eta[k], SigmaT[materialMatrix[j*I + i] - 1], leftBC, topBC[i], distrSource[j*I + i]);
+				phi[j*I + i] += w[k] * solution[0];
 				leftBC = solution[1];
 				topBC[i] = solution[2];
 			}

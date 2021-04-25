@@ -11,8 +11,8 @@ void input_echo(int I, int J, double *dx, double *dy,
 	outputFile.open(dot_out, std::ofstream::app);
 
 	outputFile << "Discrete Ordinates/Octant\nn\tmu\teta\tw\n";
-	for(int i = 0; i < K; i++) {
-		outputFile << i << "\t" << mu[i] << "\t" << eta[i] << "\t" << w[i] << "\n\n";
+	for(int k = 0; k < K; k++) {
+		outputFile << k << "\t" << mu[k] << "\t" << eta[k] << "\t" << w[k] << "\n\n";
 	}
 
 	outputFile << "Boundary Conditions\nLeft\tRight\tBottom\tTop\n";
@@ -23,14 +23,14 @@ void input_echo(int I, int J, double *dx, double *dy,
 
 	outputFile << "Computational Cell Data\n";
 	outputFile << "i\tj\tMaterial\tdx\tdy\tSigmaT\tSigmaS\tSource\n";
-	for(int i = 0; i < I; i++) {
-		for(int j = 0; j < J; j++) {
+	for(int j = 0; j < J; j++) {
+		for(int i = 0; i < I; i++) {
 			outputFile << i+1 << "\t" << j+1 << "\t";
-			outputFile << materialMatrix[i*J + j] << "\t";
+			outputFile << materialMatrix[j*I + i] << "\t";
 			outputFile << dx[i] << "\t" << dy[j] << "\t";
-			outputFile << SigmaT[materialMatrix[i*J + j] - 1] << "\t";
-			outputFile << SigmaS[materialMatrix[i*J + j] - 1] << "\t";
-			outputFile << sourceMatrix[i*J + j] << "\n";
+			outputFile << SigmaT[materialMatrix[j*I + i] - 1] << "\t";
+			outputFile << SigmaS[materialMatrix[j*I + i] - 1] << "\t";
+			outputFile << sourceMatrix[j*I + i] << "\n";
 		}
 		outputFile << "\n";
 	}

@@ -56,16 +56,16 @@ void input_data(int &I, int &J, double *&dx, double *&dy,
 	sourceMatrix = new double[I*J];
 
 	// Input material matrix.
-	for(int i = 0; i < I; i++) {
-		for(int j = 0; j < J; j++) {
-			inputFile >> materialMatrix[i*J + j];
+	for(int j = 0; j < J; j++) {
+		for(int i = 0; i < I; i++) {
+			inputFile >> materialMatrix[j*I + i];
 		}
 	}
 
 	// Input source matrix.
-	for(int i = 0; i < I; i++) {
-		for(int j = 0; j < J; j++) {
-			inputFile >> sourceMatrix[i*J + j];
+	for(int j = 0; j < J; j++) {
+		for(int i = 0; i < I; i++) {
+			inputFile >> sourceMatrix[j*I + i];
 		}
 	}
 

@@ -94,7 +94,7 @@ int inner(int I, int J, double *dx, double *dy,
 
 	for(int j = 0; j < J; j++) {
 		for(int i = 0; i < I; i++) {
-			outputFile << i+1 << "\t" << j+1 << "\t" << phi[i*I + j] << "\n";
+			outputFile << i+1 << "\t" << j+1 << "\t" << phi[j*I + i] << "\n";
 		}
 		outputFile << "\n";
 	}
